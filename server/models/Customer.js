@@ -15,6 +15,7 @@ const CustomerSchema = new mongoose.Schema({
   middleInit: { type: String, required: false },
   lastName: { type: String, required: true },
   suffix: { type: String, required: false },
+  dateOfBirth: { type: String, required: false },
   address: { type: String, required: false },
   address2: { type: String, required: false },
   addressNumber: { type: String, required: false },
