@@ -18,6 +18,7 @@ const typeDefs = gql`
   input TransUnionInput {
     customerId: String!
     ssn: String
+    dateOfBirth: String
     firstName: String
     middleInit: String
     lastName: String
