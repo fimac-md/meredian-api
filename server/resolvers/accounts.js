@@ -135,6 +135,7 @@ module.exports = {
             'addressType',
             'addressNumber',
             'middleInit',
+            'dateOfBirth',
           ]);
 
           // call transunion to get account information for this user.
