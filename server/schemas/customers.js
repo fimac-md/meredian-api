@@ -70,6 +70,7 @@ const typeDefs = gql`
     lastName: String
     suffix: String
     phoneNumber: String
+    dateOfBirth: String
     ssn: String
     address: String
     address2: String
