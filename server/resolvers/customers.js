@@ -105,6 +105,7 @@ module.exports = {
     updateCustomer: async (parent, { input }, { isAdmin }) => {
       try {
         const { customerId } = input;
+        console.log('updateCustomer - customerId', customerId);
         if (!customerId) throw new Error(ERRORS.CUSTOMER.ID_REQUIRED);
         let updateValues = removeSensitiveFields(input);
         await connectDatabase();
