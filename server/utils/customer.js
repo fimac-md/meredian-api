@@ -24,6 +24,8 @@ module.exports.tamuAddressFieldsFound = (customer) =>
   customer.zipPlus4;
 
 module.exports.softVerifyCustomer = ({ input, customer }) => {
+  console.log('softVerifyCustomer - input', input);
+  console.log('softVerifyCustomer - customer', customer);
   return new Promise((resolve, reject) => {
     try {
       const customerVerified =
