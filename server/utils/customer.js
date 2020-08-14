@@ -57,6 +57,7 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
       const { data } = await axios.get(url);
 
       if (data.QueryStatusCode !== 'Success')
+        console.log('data', data);
         throw new Error(ERRORS.TAMU.UNKNOWN);
 
       // return first street address
