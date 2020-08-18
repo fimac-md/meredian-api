@@ -64,7 +64,19 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
 
       // return first street address
 
-      resolve(data.StreetAddresses[0]);
+      let tamuStreetAddress = data.StreetAddresses[0];
+      if (
+          tamuStreetAddress.PostOfficeBoxType
+          &&
+          tamuStreetAddress.PostOfficeBoxNumber
+        ) {
+        if (tamuStreetAddress.PostOfficeBoxType.length > 1 && tamuStreetAddress.PostOfficeBoxNumber.length > 1) {
+          tamuStreetAddress['StreetName'] = `${tamuStreetAddress.PostOfficeBoxType} ${tamuStreetAddress.PostOfficeBoxNumber}`;
+          tamuStreetAddress['Number'] = `${tamuStreetAddress.PostOfficeBoxNumber}`;
+        }
+      }
+
+      resolve(tamuStreetAddress);
     } catch (error) {
       console.log(error);
       reject(error);
