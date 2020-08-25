@@ -62,8 +62,9 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
         console.log('data', data);
         const parsedAddress = parser.parseLocation(`${customer.address} ${customer.city} ${customer.zipCode}`);
         console.log('parsedAddress', parsedAddress);
-        data = [];
-        data[0] = {
+        data = {};
+        data.StreetAddresses = [];
+        data.StreetAddresses[0] = {
           Number: parsedAddress.number || '',
           StreetName: parsedAddress.street || '',
           PreDirectional: parsedAddress.prefix || '',
