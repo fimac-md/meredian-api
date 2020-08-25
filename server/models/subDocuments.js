@@ -144,7 +144,7 @@ module.exports.addOnProductSchema = new mongoose.Schema({
   status: { type: String },
   scoreModel: {
     score: {
-      results: { type: Number },
+      results: { type: String },
       derogatoryAlert: { type: Boolean },
       fileInquiriesImpactedScore: { type: Boolean },
       factors: {

@@ -215,7 +215,7 @@ const typeDefs = gql`
   }
   type TuScore {
     id: ID!
-    results: Int
+    results: String
     derogatoryAlert: Boolean
     fileInquiriesImpactedScore: Boolean
     factors: TuFactors
