@@ -41,6 +41,7 @@
     "mongoose": "^5.9.10",
     "node-fetch": "1.6.3",
     "nodemailer": "^6.4.6",
+    "parse-address": "^1.1.2",
     "subscriptions-transport-ws": "^0.9.16",
     "validator": "^13.0.0"
   },

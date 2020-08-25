@@ -1,6 +1,7 @@
 const Customer = require('../models/Customer');
 
 const { pick } = require('lodash');
+const parser = require('parse-address');
 const axios = require('axios').default;
 const { ERRORS } = require('../constants/errors');
 const addressFields = ['address', 'address2', 'city', 'state', 'zipCode'];
@@ -54,12 +55,27 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
         customer.state
       }&nonParsedZIP=${customer.zipCode}`;
 
-      const { data } = await axios.get(url);
+      let { data } = await axios.get(url);
 
       if (data.QueryStatusCode !== 'Success') {
         console.log('customer input', customer);
         console.log('data', data);
-        throw new Error(ERRORS.TAMU.UNKNOWN);
+        const parsedAddress = parser.parseLocation(`${customer.address} ${customer.city} ${customer.zipCode}`);
+        console.log('parsedAddress', parsedAddress);
+        data = [];
+        data[0] = {
+          Number: parsedAddress.number || '',
+          StreetName: parsedAddress.street || '',
+          PreDirectional: parsedAddress.prefix || '',
+          City: parsedAddress.city || '',
+          State: parsedAddress.state || '',
+          ZIP: parsedAddress.zip || '',
+          Suffix: parsedAddress.type || '',
+          PostDirectional: '',
+          SuiteNumber: '',
+          ZIPPlus4: '',
+        };
+        //throw new Error(ERRORS.TAMU.UNKNOWN);
       }
 
       // return first street address
