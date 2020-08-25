@@ -48,7 +48,7 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
         process.env.GEO_ADDRESS_API_KEY
       }&version=${
         process.env.GEO_ADDRESS_API_VERSION
-      }&responseFormat=json&nonParsed&StreetAddress=${`${customer.address}${
+      }&responseFormat=json&nonParsedStreetAddress=${`${customer.address}${
         customer.address2 ? ', ' + customer.address2 : ''
       }`}&nonParsedCity=${customer.city}&nonParsedState=${
         customer.state
