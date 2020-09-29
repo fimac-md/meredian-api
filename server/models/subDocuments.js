@@ -53,6 +53,7 @@ module.exports.accountsSchema = new mongoose.Schema({
     type: { type: String },
   },
   terms: {
+    paymentFrequency: { type: String },
     paymentScheduleMonthCount: { type: String },
     scheduledMonthlyPayment: { type: Number },
   },
