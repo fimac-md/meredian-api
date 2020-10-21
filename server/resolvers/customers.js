@@ -32,7 +32,7 @@ module.exports = {
         // TODO: check for accounts in db for this user/code
 
         // const query = { _id: new ObjectId(customerId) };
-        let customer = await Customer.findOne({ _id: ObjectId("5f905a2d02d3650017e0a898") });
+        let customer = await Customer.findById(customerId);
         console.log('customer', customer);
   
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
