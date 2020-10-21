@@ -33,7 +33,8 @@ module.exports = {
 
         const query = { _id: new ObjectId(customerId) };
         let customer = await Customer.findOne(query);
-
+        console.log('customer', customer);
+  
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
         // TODO: use https://docs.mongodb.com/manual/reference/operator/aggregation/size/#exp._S_size
         // to get the count here.
@@ -49,7 +50,7 @@ module.exports = {
           customer = maskSensitiveCustomerData(customer);
         }
         customer.accountCount = accountCount;
-
+        console.log('customer.accountCount', customer.accountCount);
         return createCustomerResponse({
           ok: true,
           customer,
