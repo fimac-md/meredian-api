@@ -1,4 +1,6 @@
 const moment = require('moment');
+const mongoose = require('mongoose');
+const ObjectId = require('mongoose').Types.ObjectId; 
 
 const {
   maskSensitiveCustomerData,
@@ -27,13 +29,10 @@ module.exports = {
     getCustomerById: async (parent, { customerId }, { isAdmin }) => {
       try {
         await connectDatabase();
-
         // TODO: check for accounts in db for this user/code
-        let customer = await Customer.findOne(
-          {
-            _id: customerId
-          }
-        );
+
+        const query = { _id: new ObjectId(customerId) };
+        let customer = await Customer.findOne(query);
 
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
         // TODO: use https://docs.mongodb.com/manual/reference/operator/aggregation/size/#exp._S_size
@@ -152,9 +151,8 @@ module.exports = {
         if (!customerId) throw new Error(ERRORS.CUSTOMER.ID_REQUIRED);
         let updateValues = removeSensitiveFields(input);
         await connectDatabase();
-        let customer = await Customer.findOne(
-          {_id: customerId }
-        );
+        const query = { _id: new ObjectId(customerId) };
+        let customer = await Customer.findOne(query);
 
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
 
