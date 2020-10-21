@@ -152,7 +152,9 @@ module.exports = {
         if (!customerId) throw new Error(ERRORS.CUSTOMER.ID_REQUIRED);
         let updateValues = removeSensitiveFields(input);
         await connectDatabase();
-        let customer = await Customer.findById(customerId);
+        let customer = await Customer.findOne(
+          {_id: customerId }
+        );
 
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
 
