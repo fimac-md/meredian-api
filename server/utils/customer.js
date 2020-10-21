@@ -30,8 +30,8 @@ module.exports.softVerifyCustomer = ({ input, customer }) => {
   return new Promise((resolve, reject) => {
     try {
       const customerVerified =
-        input.firstName.toUpperCase() === customer.firstName.toUpperCase() &&
-        input.lastName.toUpperCase() === customer.lastName.toUpperCase();
+        (input.firstName.toUpperCase() === customer.firstName.toUpperCase() &&
+        input.lastName.toUpperCase() === customer.lastName.toUpperCase()) || input.leadId == customer.leadId;
       if (!customerVerified)
         throw new Error(ERRORS.CUSTOMER.NOT_FOUND_WITH_PROVIDED_INFO);
 
