@@ -93,10 +93,6 @@ const typeDefs = gql`
     getCustomerById(customerId: String!): CustomerResponse
   }
 
-  type Query {
-    getCustomerByLeadId(leadId: String!): CustomerResponse
-  }
-
   type Mutation {
     createCustomer(input: CreateCustomerInput): CustomerResponse
     updateCustomer(input: UpdateCustomerInput): CustomerResponse
