@@ -29,7 +29,11 @@ module.exports = {
         await connectDatabase();
 
         // TODO: check for accounts in db for this user/code
-        let customer = await Customer.findById(customerId);
+        let customer = await Customer.findOne(
+          {
+            _id: customerId
+          }
+        );
 
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
         // TODO: use https://docs.mongodb.com/manual/reference/operator/aggregation/size/#exp._S_size
