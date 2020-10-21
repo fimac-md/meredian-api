@@ -154,6 +154,7 @@ module.exports = {
         const query = { _id: new ObjectId(customerId) };
         let customer = await Customer.findOne(query);
 
+
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
 
         // perform address verification and  addresses information
