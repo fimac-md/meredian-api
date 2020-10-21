@@ -63,6 +63,43 @@ module.exports = {
         });
       }
     },
+    getCustomerByLeadId: async (parent, { leadId }, { isAdmin }) => {
+      try {
+        await connectDatabase();
+        // TODO: check for accounts in db for this user/code
+
+        // const query = { _id: new ObjectId(customerId) };
+        let customer = await Customer.findOne({ leadId: leadId });
+        console.log('customer', customer);
+  
+        if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
+        // TODO: use https://docs.mongodb.com/manual/reference/operator/aggregation/size/#exp._S_size
+        // to get the count here.
+
+        const accountCount = await Account.countDocuments({
+          customerId: customer.id,
+        });
+
+        if (!customer)
+          throw new Error(ERRORS.CUSTOMER.NOT_FOUND_WITH_PROVIDED_INFO);
+
+        if (!isAdmin) {
+          customer = maskSensitiveCustomerData(customer);
+        }
+        customer.accountCount = accountCount;
+        console.log('customer.accountCount', customer.accountCount);
+        return createCustomerResponse({
+          ok: true,
+          customer,
+        });
+      } catch (error) {
+        console.log('error', error);
+        return createCustomerResponse({
+          ok: false,
+          errors: convertError(error),
+        });
+      }
+    },
   },  
   Mutation: {
     createCustomer: async (parent, { input }, { isAdmin }) => {
