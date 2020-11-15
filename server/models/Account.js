@@ -21,6 +21,8 @@ const AccountSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
+AccountSchema.index({ customerId: -1 });
+
 // TODO: encrypt credit card number in database;
 AccountSchema.pre('save', async function () {
   const account = this;

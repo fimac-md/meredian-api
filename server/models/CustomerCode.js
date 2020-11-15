@@ -14,4 +14,6 @@ const CustomerCodeSchema = new mongoose.Schema({
   },
 });
 
+CustomerCodeSchema.index({ customerId: -1 });
+
 module.exports = mongoose.model('CustomerCode', CustomerCodeSchema);

@@ -37,6 +37,8 @@ const CustomerSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
+CustomerSchema.index({ leadId: -1 });
+
 // TODO: encrypt ssn in database;
 CustomerSchema.pre('save', async function () {
   const customer = this;
