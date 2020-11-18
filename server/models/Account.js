@@ -19,7 +19,7 @@ const AccountSchema = new mongoose.Schema({
   addOnProduct: [addOnProductSchema],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-});
+}, { timestamps: true });
 
 AccountSchema.index({ customerId: -1 });
 
