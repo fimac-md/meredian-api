@@ -2,6 +2,56 @@ const fetch = require('node-fetch');
 const createParamString = require('./createParamString');
 const { isJsonResponse, nonJsonErrorMsg } = require('../utils/responseValidation');
 const { noticeError, errorObject } = require('../utils/errors');
+const Customer = require('../models/Customer');
+const Account = require('../models/Account');
+
+const connectDatabase = require('../models/connectDatabase');
+
+const getCustomerData = async (queryString) => {
+  await connectDatabase();
+
+  const { leadId } = queryString;
+  const query = { leadId };
+  const customer = await Customer.find(query).lean();
+  return customer;
+}
+
+const getAccountData = async (queryString) => {
+  await connectDatabase();
+
+  const { customerId } = queryString;
+  const query = { customerId };
+  const account = await Account.find(query).lean();
+  return account;
+}
+
+const getCustomersData = async (queryString) => {
+  await connectDatabase();
+
+  const { limit, skip, sort='_id' } = queryString;
+  const limitInt = parseInt(limit, 10);
+  const skipInt = parseInt(skip, 10);
+  const customers = await Customer.find({ "leadId": { $exists: true } })
+    .limit(limitInt)
+    .skip(skipInt)
+    .sort(sort)
+    .lean();
+  return customers;
+}
+
+const getAccountsData = async (queryString) => {
+  await connectDatabase();
+
+  const { limit, skip, sort='_id' } = queryString;
+  const limitInt = parseInt(limit, 10);
+  const skipInt = parseInt(skip, 10);
+  const accounts = await Account.find({ "customerId": { $exists: true } })
+    .limit(limitInt)
+    .skip(skipInt)
+    .sort(sort)
+    .lean();
+  return accounts;
+}
 
 const postCreditSoftData = async (query, body, headers) => {
 
@@ -74,4 +124,11 @@ const getCreditSoftData = async (query, headers) => {
 
 };
 
-module.exports = { postCreditSoftData, getCreditSoftData };
+module.exports = {
+  getCustomerData,
+  getAccountData,
+  getCustomersData,
+  getAccountsData,
+  postCreditSoftData,
+  getCreditSoftData,
+};

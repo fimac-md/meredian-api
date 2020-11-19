@@ -10,6 +10,7 @@ const context = require('./server/utils/context');
 const helment = require('helmet');
 const logger = require('./server/utils/logger');
 const creditsoft = require('./server/routes/creditsoft');
+const transunionData = require('./server/routes/transunionData');
 const { validateToken, findCustomer } = require('./server/utils/tokens');
 
 // Provide schemas for apollo server
@@ -42,6 +43,7 @@ const log = logger('meredian-api');
   app.use(express.static(path.join(__dirname, 'public')));
 
   app.use('/creditsoft', creditsoft(log));
+  app.use('/transunionData', transunionData(log));
 
   const playground = process.env.GRAPHQL_PLAYGROUND_ENABLED === 'true';
   const introspection = process.env.GRAPHQL_INTROSPECTION_ENABLED === 'true';
