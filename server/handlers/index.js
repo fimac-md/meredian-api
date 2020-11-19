@@ -50,7 +50,17 @@ const getAccountsData = async (queryString) => {
     .skip(skipInt)
     .sort(sort)
     .lean();
-  return accounts;
+
+    const accountsResponse = accounts.map(account => {
+      if (!account.createdAt) {
+        account.createdAt = account._id.getTimestamp().toISOString()
+      }
+      if (!account.updatedAt) {
+        account.updatedAt = account._id.getTimestamp().toISOString()
+      }
+      return account;
+    });
+  return accountsResponse;
 }
 
 const postCreditSoftData = async (query, body, headers) => {
