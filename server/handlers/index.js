@@ -32,8 +32,8 @@ const getCustomersData = async (queryString) => {
   const limitInt = parseInt(limit, 10);
   const skipInt = parseInt(skip, 10);
   const customers = await Customer.find({ "leadId": { $exists: true } })
-    .limit(limitInt)
     .skip(skipInt)
+    .limit(limitInt)
     .sort(sort)
     .lean();
   return customers;
@@ -46,8 +46,8 @@ const getAccountsData = async (queryString) => {
   const limitInt = parseInt(limit, 10);
   const skipInt = parseInt(skip, 10);
   const accounts = await Account.find({ "customerId": { $exists: true } })
-    .limit(limitInt)
     .skip(skipInt)
+    .limit(limitInt)
     .sort(sort)
     .lean();
 
