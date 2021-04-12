@@ -1,4 +1,5 @@
-if (process.env.NODE_ENV !== 'production') require('dotenv').config({ path: __dirname + '/.env', silent: false });
+const node_env = process.env.NODE_ENV || 'production';
+if (node_env !== 'production') require('dotenv').config({ path: __dirname + '/.env', silent: false });
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
