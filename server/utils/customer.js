@@ -58,7 +58,7 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
       let { data } = await axios.get(url);
       console.log('TAMU URL', url);
       console.log('TAMU data response', data);
-      if (data.QueryStatusCode !== 'Success') {
+      if (data.QueryStatusCode !== 'Success' || 1 == 1) {
         console.log('customer input', customer);
         console.log('data', data);
         const parsedAddress = parser.parseLocation(`${customer.address} ${customer.city} ${customer.zipCode}`);
