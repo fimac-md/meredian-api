@@ -144,6 +144,8 @@ module.exports = {
             tuRequestBody
           );
 
+          console.log('TU - result.data', result.data);
+
           accounts = await Account.findOneAndUpdate(
             { customerId: customer.id },
             { customerId: customer.id, ...result.data },
