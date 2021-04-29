@@ -33,7 +33,7 @@ module.exports = {
 
         // const query = { _id: new ObjectId(customerId) };
         let customer = await Customer.findById(customerId);
-        console.log('customer', customer);
+        console.log('customer', customer, customerId);
   
         if (!customer) throw new Error(ERRORS.CUSTOMER.NOT_FOUND);
         // TODO: use https://docs.mongodb.com/manual/reference/operator/aggregation/size/#exp._S_size
