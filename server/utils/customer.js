@@ -76,6 +76,7 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
           PostDirectional: '',
           SuiteNumber: '',
           ZIPPlus4: '',
+          tamuURL: url,
         };
         //throw new Error(ERRORS.TAMU.UNKNOWN);
       }
