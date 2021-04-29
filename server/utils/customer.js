@@ -61,7 +61,7 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
       if (data.QueryStatusCode !== 'Success' || 1 == 1) {
         console.log('customer input', customer);
         console.log('data', data);
-        const parsedAddress = parser.parseLocation(`${customer.address} ${customer.city} ${customer.zipCode}`);
+        const parsedAddress = parser.parseLocation(`${customer.address} ${customer.city} ${customer.state} ${customer.zipCode}`);
         console.log('parsedAddress', parsedAddress);
         data = {};
         data.StreetAddresses = [];
