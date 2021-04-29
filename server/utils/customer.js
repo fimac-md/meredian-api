@@ -56,7 +56,8 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
       }&nonParsedZIP=${customer.zipCode}`;
 
       let { data } = await axios.get(url);
-
+      console.log('TAMU URL', url);
+      console.log('TAMU data response', data);
       if (data.QueryStatusCode !== 'Success') {
         console.log('customer input', customer);
         console.log('data', data);
