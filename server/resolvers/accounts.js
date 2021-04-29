@@ -138,6 +138,8 @@ module.exports = {
             'dateOfBirth',
           ]);
 
+          console.log('making request to process.env.TU_API_PATH', process.env.TU_API_PATH);
+          console.log('tuRequestBody', tuRequestBody);
           // call transunion to get account information for this user.
           const result = await axios.post(
             process.env.TU_API_PATH,
