@@ -56,13 +56,13 @@ module.exports.getTamuAddressInformation = ({ customer }) => {
       }&nonParsedZIP=${customer.zipCode}`;
 
       let { data } = await axios.get(url);
-      console.log('TAMU URL', url);
-      console.log('TAMU data response', data);
-      if (data.QueryStatusCode !== 'Success' || 1 == 1) {
-        console.log('customer input', customer);
-        console.log('data', data);
+      //console.log('TAMU URL', url);
+      //console.log('TAMU data response', data);
+      if (data.QueryStatusCode !== 'Success') {
+        //console.log('customer input', customer);
+        //console.log('data', data);
         const parsedAddress = parser.parseLocation(`${customer.address} ${customer.city} ${customer.state} ${customer.zipCode}`);
-        console.log('parsedAddress', parsedAddress);
+        //console.log('parsedAddress', parsedAddress);
         data = {};
         data.StreetAddresses = [];
         data.StreetAddresses[0] = {
