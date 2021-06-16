@@ -2,13 +2,7 @@ const mongoose = require('mongoose');
 const { default: validatorF } = require('validator');
 
 const CustomerSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    validate: {
-      validator: (v) => validatorF.isEmail(v),
-      message: 'Email validation failed',
-    },
-  },
+  email: { type: String, required: false },
   phoneNumber: { type: String, required: true },
   ssn: { type: String, required: false },
   firstName: { type: String, required: true },
